@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class PuzzleJava {
-
+    // generate and return an array with 10 random numbers between 1 and 20 inclusive. 
     public ArrayList<Integer> getTenRolls() {
     ArrayList<Integer> numArr = new ArrayList<Integer>();
     Random r = new Random();
@@ -19,7 +19,8 @@ public class PuzzleJava {
             alphabetArr.add(ch);
           }
         //   System.out.println(alphabetArr.size());
-      
+//java.util.Random.nextInt(int n) : The nextInt(int n) is used to get a random number between 0(inclusive) and 
+//the number passed in this argument(n), exclusive.
           int randomVal = rand.nextInt(26);
         //   System.out.println(alphabetArr);
         //   System.out.println(randomVal);

@@ -1,6 +1,7 @@
 {
     "java.project.sourcePaths": [
+        "03-zoo-keeper-pt1",
         "01-project-class",
-        "03-zoo-keeper-pt1"
+        "04-zoo-keeper-pt2/zookeeper2"
     ]
 }

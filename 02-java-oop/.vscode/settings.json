@@ -1,8 +1,9 @@
 {
     "java.project.sourcePaths": [
+        "07-bank-account",
         "04-zoo-keeper-pt2/zookeeper2",
         "03-zoo-keeper-pt1",
         "01-project-class",
-        "07-bank-account"
+        "09-phone"
     ]
 }

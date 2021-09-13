@@ -61,8 +61,8 @@ public class BankAccount {
     }
     }
 
-    public double totalMoney() {
-        System.out.println("Total money from both checking and savings account is ");
-        return totalAmountOfMoney;
-    }
+    // public double totalMoney() {
+    //     System.out.println("Total money from both checking and savings account is ");
+    //     return totalAmountOfMoney;
+    // }
 }

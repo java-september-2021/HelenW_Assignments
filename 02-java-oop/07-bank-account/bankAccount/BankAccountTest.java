@@ -4,7 +4,7 @@ public class BankAccountTest {
     public static void main(String[] args) {
         BankAccount tester1 = new BankAccount();
         BankAccount tester2 = new BankAccount();
-        System.out.println(tester1.totalMoney());
+        System.out.println("Total money of both accounts is "+BankAccount.totalAmountOfMoney);
         System.out.println("tester1's checking balance is "+tester1.getCheckBalance());
         System.out.println("tester1's savings balance is "+tester1.getSavingsBalance());
         System.out.println("Activies about tester1");
@@ -20,9 +20,8 @@ public class BankAccountTest {
         System.out.println("tester2's checking balance is "+tester2.getCheckBalance());
         System.out.println("tester2's savings balance is "+tester2.getSavingsBalance());
 
-
-        System.out.println(tester1.totalMoney());
-        System.out.println(tester2.totalMoney());
+        //use class name to have access to static class variables below
+        System.out.println("Total money of both accounts is "+BankAccount.totalAmountOfMoney);
         System.out.println("There are "+BankAccount.numOfAccount+" bank accounts that have been generated.");
 
     }

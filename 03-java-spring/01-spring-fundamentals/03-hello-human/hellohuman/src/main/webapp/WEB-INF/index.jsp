@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Hello ${name }</title>
+<title>Hello <c:out value="${name}"/></title>
 </head>
 <body>
-<h1>Hello ${name}</h1>
+<h1>Hello  <c:out value="${name}"/></h1>
 <p>Welcome to spring boot! </p>
 
 </body>

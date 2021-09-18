@@ -32,6 +32,7 @@ public class CountController {
 	
 	@GetMapping("/reset") 
 	public String reset(HttpSession session) {
+		//Invalidates this session then unbinds any objects bound to it.
 		session.invalidate();
 		return "redirect:/";
 	}

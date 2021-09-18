@@ -1,0 +1,19 @@
+#errors {
+	color:red;
+	font-size:20px;
+}
+
+.form {
+	margin: auto;
+	padding:50px;
+	font-size:30pt;
+	text-align:center;
+	border: 1px solid black;
+	width:60%;
+}
+
+.lst {
+	text-align:center;
+	margin:auto;
+	font-size:50px;
+}

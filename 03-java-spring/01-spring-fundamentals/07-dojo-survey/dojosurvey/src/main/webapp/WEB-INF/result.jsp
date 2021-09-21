@@ -15,6 +15,7 @@
 <p> Dojo Location:  <c:out value="${location}" /> </p>
 <p> Favorite Languages:  <c:out value="${fav}" /> </p>
 <p> Comment:  <c:out value="${comment}" /> </p>
+<a href="/">Go back</a>
 </div>
 </body>
 </html>

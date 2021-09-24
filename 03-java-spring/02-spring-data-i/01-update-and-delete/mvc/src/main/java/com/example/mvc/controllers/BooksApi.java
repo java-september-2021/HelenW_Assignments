@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.mvc.models.Book;
 import com.example.mvc.services.BookService;
 
 @RestController
+@RequestMapping("/api/books")
 public class BooksApi {
 	@Autowired
 	private  BookService bookService;
@@ -24,30 +25,29 @@ public class BooksApi {
 //		this.bookService = bookService;
 //	}
 	//get all books
-	 @GetMapping("/api/books")
+	 @GetMapping(" ")
 	    public List<Book> index() {
 	        return this.bookService.allBooks();
 	    }
 	//create a book
-     @PostMapping("/api/books")
+     @PostMapping("/create")
      public Book create(Book book) {
      return this.bookService.createBook(book);
      }
      
      //update a book
-//     @PutMapping("/api/books")
-//     public Book update(Book book) {
-//     return this.bookService.editBook(book);
-//     }
+     @PutMapping("/{id}/update")
+     public Book update(@PathVariable("id") Long id , Book book) {
+     return this.bookService.updateOne(book);
+     }
      
      //return a specific book
-     @GetMapping("/api/books/{id}")
-     public Book show(@PathVariable("id") Long id) {
-         Book book = bookService.findBook(id);
-         return book;
+     @GetMapping("/{id}")
+     public Book getOne(@PathVariable("id") Long id) {
+         return this.bookService.getOneBook(id);
      }
      //delete a book
-     @DeleteMapping("/api/books/{id}")
+     @DeleteMapping("/{id}/delete")
      public String destroy(@PathVariable("id") Long id) {
          return this.bookService.deleteBook(id);
      }

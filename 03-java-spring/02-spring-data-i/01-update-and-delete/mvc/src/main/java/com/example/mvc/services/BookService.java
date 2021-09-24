@@ -30,13 +30,13 @@ public class BookService {
     }
     
  // Update 
-  	public Book editBook(Book book) {
+  	public Book updateOne(Book book) {
   		return this.bookRepository.save(book);
   	}
 
     
  // retrieves a book
-    public Book findBook(Long id) {
+    public Book getOneBook(Long id) {
     	return this.bookRepository.findById(id).orElse(null);
     }
     

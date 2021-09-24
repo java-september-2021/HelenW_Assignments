@@ -6,10 +6,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Dojo Survey Index</title>
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
-<div class="form">
+ <!-- <div class="form">-->
+<div class="container">
 <form method="POST" action="/submit">
     <label>Your Name: <input type="text" name="name"></label>
     <br>
@@ -36,7 +38,7 @@
 <textarea id="comment" name="comment" rows="4" cols="50">
   </textarea>
   <br><br>
-    <button>Submit</button>
+    <button class="btn btn-primary">Submit</button>
 </form>
 </div>
 </body>

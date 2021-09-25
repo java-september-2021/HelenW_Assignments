@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.mvc.models.Book;
 import com.example.mvc.services.BookService;
@@ -45,8 +47,32 @@ public class BooksController {
     }
     //show a book
     @GetMapping("/books/{id}")
-	public String editRecord(@PathVariable("id") Long id, @ModelAttribute("album") Book book, Model viewModel) {
+	public String editRecord(@PathVariable("id") Long id, @ModelAttribute("book") Book book, Model viewModel) {
 		viewModel.addAttribute("book", this.bookService.getOneBook(id));
 		return "/books/show.jsp";
 	}
+    
+    //edit a book
+    @GetMapping("/books/{id}/edit")
+    public String edit(@PathVariable("id") Long id, Model model) {
+        Book book = this.bookService.getOneBook(id);
+        model.addAttribute("book", book);
+        return "/books/edit.jsp";
+    }
+    
+    @RequestMapping(value="/books/{id}", method=RequestMethod.PUT)
+    public String update(@Valid @ModelAttribute("book") Book book, BindingResult result) {
+        if (result.hasErrors()) {
+            return "/books/edit.jsp";
+        } else {
+            this.bookService.updateOne(book);
+            return "redirect:/books";
+        }
+    }
+    //delete a book
+    @RequestMapping(value="/books/{id}", method=RequestMethod.DELETE)
+    public String destroy(@PathVariable("id") Long id) {
+        this.bookService.deleteBook(id);
+        return "redirect:/books";
+    }
 }

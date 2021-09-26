@@ -32,11 +32,12 @@ public class BooksController {
         return "/books/index.jsp";
     }
     //create a book
-    @GetMapping("/books/new")
+    @GetMapping("/books/new")//blank object
     public String newBook(@ModelAttribute("book") Book book) {
         return "/books/new.jsp";
     }
-    @PostMapping("/books")
+    @PostMapping("/books/new")
+    //object with filled in data
     public String create(@Valid @ModelAttribute("book") Book book, BindingResult result) {
         if (result.hasErrors()) {
             return "/books/new.jsp";
@@ -47,7 +48,7 @@ public class BooksController {
     }
     //show a book
     @GetMapping("/books/{id}")
-	public String editRecord(@PathVariable("id") Long id, @ModelAttribute("book") Book book, Model viewModel) {
+	public String display(@PathVariable("id") Long id, @ModelAttribute("book") Book book, Model viewModel) {
 		viewModel.addAttribute("book", this.bookService.getOneBook(id));
 		return "/books/show.jsp";
 	}
@@ -60,17 +61,19 @@ public class BooksController {
         return "/books/edit.jsp";
     }
     
-    @RequestMapping(value="/books/{id}", method=RequestMethod.PUT)
-    public String update(@Valid @ModelAttribute("book") Book book, BindingResult result) {
+//    @RequestMapping(value="/books/{id}", method=RequestMethod.PUT)
+    @PostMapping("/books/{id}/edit")
+    public String update(@Valid @ModelAttribute("book") Book book, BindingResult result, @PathVariable("id") Long id) {
         if (result.hasErrors()) {
             return "/books/edit.jsp";
         } else {
             this.bookService.updateOne(book);
-            return "redirect:/books";
+            return "redirect:/books/"+id;
         }
     }
     //delete a book
-    @RequestMapping(value="/books/{id}", method=RequestMethod.DELETE)
+//    @RequestMapping(value="/books/{id}", method=RequestMethod.DELETE)
+    @PostMapping("/books/{id}/delete")
     public String destroy(@PathVariable("id") Long id) {
         this.bookService.deleteBook(id);
         return "redirect:/books";

@@ -21,6 +21,11 @@ import com.helen.lookify.services.SongService;
 public class SongHomeController {
 	@Autowired
 	private SongService sService;
+	//welcome page
+	@GetMapping("") 
+	public String welcome() {
+		return "welcome.jsp";
+	}
 	
 	//show all books
 	@GetMapping("/dashboard")

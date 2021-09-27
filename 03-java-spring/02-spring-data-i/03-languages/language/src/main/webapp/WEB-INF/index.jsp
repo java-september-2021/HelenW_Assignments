@@ -36,21 +36,21 @@
 <hr>
 <h1>Create a New Language</h1>
 <form:form action="/languages" method="post" modelAttribute="language">
-    <p>
+    <div class="form-group">
         <form:label path="name">Name</form:label>
         <form:errors path="name"/>
         <form:input path="name"/>
-    </p>
-    <p>
+    </div>
+    <div class="form-group">
         <form:label path="creator">Creator</form:label>
         <form:errors path="creator"/>
         <form:textarea path="creator"/>
-    </p>
-    <p>
+    </div>
+    <div class="form-group">
         <form:label path="currentVersion">Current Version</form:label>
         <form:errors path="currentVersion"/>
         <form:input path="currentVersion"/>
-    </p>
+    </div>
    
     <input type="submit" value="Submit"/>
 </form:form> 

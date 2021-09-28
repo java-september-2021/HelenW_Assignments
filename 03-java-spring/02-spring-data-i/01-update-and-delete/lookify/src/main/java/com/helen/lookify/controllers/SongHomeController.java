@@ -37,7 +37,7 @@ public class SongHomeController {
 	
 	//display a song
 	@GetMapping("/songs/{id}") 
-	public String display(@PathVariable("id") Long id, @ModelAttribute("song") Song song, Model viewModel) {
+	public String display(@PathVariable("id") Long id, Model viewModel) {
 		viewModel.addAttribute("song", this.sService.getOne(id));
 		return "show.jsp";
 	}

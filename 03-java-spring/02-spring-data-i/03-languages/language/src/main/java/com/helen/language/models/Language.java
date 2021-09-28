@@ -24,10 +24,10 @@ public class Language {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	 @NotNull
-	 @Size(min = 2, max = 20)
+	 @Size(min = 2, max = 20, message="name must be between 2 to 20 characters.")
 	private String name;
     @NotNull
-    @Size(min = 2, max = 20)
+    @Size(min = 2, max = 20, message="creator must be between 2 to 20.")
     private String creator;
     @NotBlank
     private String currentVersion;

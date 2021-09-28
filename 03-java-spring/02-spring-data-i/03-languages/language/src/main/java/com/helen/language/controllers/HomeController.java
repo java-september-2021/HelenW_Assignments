@@ -46,7 +46,7 @@ public class HomeController {
 	
 	//display one language
 	@GetMapping("/{id}") 
-	public String getOneLang(@PathVariable("id") Long id,@ModelAttribute("lang") Language lang, Model viewModel) {
+	public String getOneLang(@PathVariable("id") Long id, Model viewModel) {
 		viewModel.addAttribute("lang", this.langService.getOne(id));
 		return "show.jsp";
 	}

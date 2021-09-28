@@ -8,7 +8,7 @@
 <meta charset="ISO-8859-1">
 <title>Languages</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+ <link rel="stylesheet" href="/css/style.css"> 
 </head>
 <body>
 <div class="container">
@@ -35,21 +35,21 @@
 </table>
 <hr>
 <h1>Create a New Language</h1>
-<form:form action="/languages" method="post" modelAttribute="language">
+<form:form action="/languages" method="post" modelAttribute="language" class="form" >
     <div class="form-group">
         <form:label path="name">Name</form:label>
-        <form:errors path="name"/>
-        <form:input path="name"/>
+        <form:errors class="error-txt" path="name"/>
+        <form:input class="form-control" path="name"/>
     </div>
     <div class="form-group">
         <form:label path="creator">Creator</form:label>
-        <form:errors path="creator"/>
-        <form:textarea path="creator"/>
+        <form:errors class="error-txt" path="creator"/>
+        <form:input class="form-control" path="creator"/>
     </div>
     <div class="form-group">
         <form:label path="currentVersion">Current Version</form:label>
-        <form:errors path="currentVersion"/>
-        <form:input path="currentVersion"/>
+        <form:errors class="error-txt" path="currentVersion"/>
+        <form:input class="form-control" path="currentVersion"/>
     </div>
    
     <input type="submit" value="Submit"/>

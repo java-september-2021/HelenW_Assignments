@@ -17,18 +17,18 @@
 <form:form action="/songs/new" method="post" modelAttribute="song">
     <div class="form-group">
         <form:label path="title">Title</form:label>
-        <form:errors class="error-ext" path="title"/>
-        <form:input path="title"/>
+        <form:errors class="error-txt" path="title"/>
+        <form:input class="form-control" path="title"/>
     </div>
     <div class="form-group">
         <form:label path="artist">Artist</form:label>
-        <form:errors class="error-ext" path="artist"/>
-        <form:input path="artist"/>
+        <form:errors class="error-txt" path="artist"/>
+        <form:input class="form-control" path="artist"/>
     </div>
     <div class="form-group">
         <form:label path="rating">Rating(1-10)</form:label>
-        <form:errors class="error-ext" path="rating"/>
-        <form:input type="number" path="rating"/>
+        <form:errors class="error-txt" path="rating"/>
+        <form:input  class="form-control" type="number" path="rating" min="1" max="10"/>
     </div>
    
     <input type="submit" value="Add Song"/>

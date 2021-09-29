@@ -1,0 +1,10 @@
+.form {
+	border:1px solid black;
+	width:50%;
+	margin:auto;
+	padding:15px;
+}
+
+.title {
+	text-align:center;
+}

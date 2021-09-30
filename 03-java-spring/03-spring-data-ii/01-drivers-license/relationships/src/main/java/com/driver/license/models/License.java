@@ -14,6 +14,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name="licenses")
 public class License {
@@ -21,7 +23,8 @@ public class License {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	 private String number;
-	    private Date expiration_date;
+		@DateTimeFormat(pattern="yyyy-MM-dd")
+	    private Date expirationDate;
 	    private String state;
 	    @Column(updatable=false)
 	    private Date createdAt;
@@ -32,6 +35,9 @@ public class License {
 	    public License() {
 	        
 	    }
+	    
+		
+
 		public Long getId() {
 			return id;
 		}
@@ -44,12 +50,19 @@ public class License {
 		public void setNumber(String number) {
 			this.number = number;
 		}
-		public Date getExpiration_date() {
-			return expiration_date;
+		
+		public Date getExpirationDate() {
+			return expirationDate;
 		}
-		public void setExpiration_date(Date expiration_date) {
-			this.expiration_date = expiration_date;
+
+
+
+		public void setExpirationDate(Date expirationDate) {
+			this.expirationDate = expirationDate;
 		}
+
+
+
 		public String getState() {
 			return state;
 		}

@@ -25,9 +25,9 @@ public class CategoryService {
 		return this.cRepo.findByProductsNotContains(product);
 	}
 	
-	public List<Category> categoriesWithProduct(Product product) {
-		return this.cRepo.findAllByProducts(product);
-	}
+//	public List<Category> categoriesWithProduct(Product product) {
+//		return this.cRepo.findAllByProducts(product);
+//	}
 	
 	//create a new category
 	public Category createCategory(Category category) {

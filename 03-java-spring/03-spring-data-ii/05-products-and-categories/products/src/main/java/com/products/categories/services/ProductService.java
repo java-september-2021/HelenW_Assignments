@@ -25,9 +25,7 @@ public class ProductService {
 		return this.pRepo.findByCategoriesNotContains(category);
 	}
 	
-	public List<Product>  ProductsInCategory(Category category) {
-		return this.pRepo.findByCategoriesNotContains(category);
-	}
+
 	//create a new product
 	public Product createProduct(Product product) {
 		return this.pRepo.save(product);

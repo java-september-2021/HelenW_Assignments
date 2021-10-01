@@ -34,10 +34,7 @@ public class HomeController {
 		//create new product
 		@PostMapping("/products/create")
 		public String createProduct(@ModelAttribute("product") Product product, Model viewModel) {
-			//display categories which include this product
-//			viewModel.addAttribute("catesProductsBelongTo", cService.categoriesWithProduct(product));
-			//display categories the product does not belong to
-//			viewModel.addAttribute("catesNotProduct", cService.catesWithoutProduct(product));
+
 			
 			this.pService.createProduct(product);
 			return "redirect:/products/"+product.getId();
@@ -77,7 +74,7 @@ public class HomeController {
 		@GetMapping("/categories/{id}")
 		public String displayCategory(@PathVariable("id") Long id, Model viewModel) {
 			viewModel.addAttribute("onecategory", this.cService.getOne(id));
-			viewModel.addAttribute("productsOutCate",pService.ProductsInCategory(cService.getOne(id)));
+			viewModel.addAttribute("productsOutCate",pService.ProductNotCategory(cService.getOne(id)));
 			viewModel.addAttribute("productsInCate", this.cService.getOne(id).getProducts());
 			return "showcategory.jsp";
 		}

@@ -14,7 +14,7 @@
 <h1>New contact</h1>
 <form:form action="/contact/create" method="post" modelAttribute="contact" class="form" >
     <form:label path="student">student</form:label>
-	<form:select path="student" class="form-control">
+	<form:select path="student" class="form-control" size="3">
 	
 	<c:forEach items="${students}" var="student">
 	<option value="${student.id}">${student.firstName} ${student.lastName}</option>

@@ -22,7 +22,7 @@ public class User {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     @NotBlank
-    @Email
+    @Email(message="Email must be valid")
     private String email;
     @Size(min=2,max=200,message="Password should be between 2~200")
     private String password;

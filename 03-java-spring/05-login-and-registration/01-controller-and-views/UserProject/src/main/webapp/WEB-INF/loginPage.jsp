@@ -15,6 +15,7 @@
 </head>
 <body>
     <h1>Login</h1>
+    <!-- to display error from flash data set in controller -->
     <p class="error-txt"><c:out value="${error}" /></p>
     <form method="post" action="/login">
     <div class="form-group">

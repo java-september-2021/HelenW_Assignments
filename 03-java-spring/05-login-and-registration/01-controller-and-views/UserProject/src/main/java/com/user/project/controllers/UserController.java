@@ -43,6 +43,7 @@ public class UserController {
     	}
         // else, save the user in the database, save the user id in session, and redirect them to the /home route
     	this.userService.registerUser(user);
+    
     	session.setAttribute("userId", user.getId());
     	return "redirect:/home";
     }
@@ -53,12 +54,13 @@ public class UserController {
         // if the user is authenticated, save their user id in session
     	if (userService.authenticateUser(email, password)) {
     		session.setAttribute("userId", userService.findByEmail(email).getId());
+    		
     		return "homePage.jsp";
     		
     	}
         // else, add error messages and return the login page
     	redirectAtt.addFlashAttribute("error","Invalid email/password");
-    
+    	//need redirect after using flash data and put "error" in the jsp file to display
     	return "redirect:/login";
     }
     

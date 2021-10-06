@@ -4,6 +4,7 @@ package com.events.belt.models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -63,7 +64,7 @@ public class User {
     private List<Message> messages;
     
     //one user can create many events
-    @OneToMany(mappedBy="eventCreator", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="eventCreator", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Event> eventsCreated;
     
     //a user can join many events, and an event can be joined by many users

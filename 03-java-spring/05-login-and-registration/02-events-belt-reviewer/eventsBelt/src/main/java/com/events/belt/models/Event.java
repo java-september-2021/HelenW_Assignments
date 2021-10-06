@@ -32,6 +32,7 @@ public class Event {
 	   @NotBlank
 	   private String eventName;
 		@Future
+
 		@DateTimeFormat(pattern ="yyyy-MM-dd")
 	   private Date eventDate;
 		@NotBlank
@@ -58,7 +59,7 @@ public class Event {
 	    		joinColumns = @JoinColumn(name = "event_id"),
 	    		inverseJoinColumns = @JoinColumn(name="user_id")
 	    		)
-	    private List<User> UsersJoined;
+	    private List<User> usersJoined;
 	    
 	    
 	    @PrePersist
@@ -75,6 +76,12 @@ public class Event {
 		}
 		
 		
+		public List<User> getUsersJoined() {
+			return usersJoined;
+		}
+		public void setUsersJoined(List<User> usersJoined) {
+			this.usersJoined = usersJoined;
+		}
 		public List<Message> getMessagesForEvent() {
 			return messagesForEvent;
 		}
@@ -87,12 +94,7 @@ public class Event {
 		public void setEventCreator(User eventCreator) {
 			this.eventCreator = eventCreator;
 		}
-		public List<User> getUsersJoined() {
-			return UsersJoined;
-		}
-		public void setUsersJoined(List<User> usersJoined) {
-			UsersJoined = usersJoined;
-		}
+		
 		public Long getId() {
 			return id;
 		}

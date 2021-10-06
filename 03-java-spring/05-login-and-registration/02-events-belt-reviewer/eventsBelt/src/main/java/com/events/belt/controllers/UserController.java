@@ -48,6 +48,7 @@ public class UserController {
         //else, save the user in the database, save the user id in the session, return to the home route
 		User newUser = userService.registerUser(user);
 		session.setAttribute("userId", newUser.getId());
+		session.setAttribute("userName", newUser.getFirstName());
         return "redirect:/events";
     }
     

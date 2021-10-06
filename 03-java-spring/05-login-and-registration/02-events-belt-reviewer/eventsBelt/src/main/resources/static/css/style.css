@@ -1,3 +1,19 @@
 .error-txt {
 	color:red;
 }
+
+.message-wall {
+	width:100%;
+	max-height: 350px;
+	min-height: 300px;
+	overflow-y:auto;
+	border:2px solid black;
+	color: blue;
+	margin-bottom:50px;
+}
+
+
+.event-form {
+	width:40%;
+	margin:auto;
+}

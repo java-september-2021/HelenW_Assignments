@@ -12,7 +12,7 @@
 	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="/css/style.css">
-<title>Insert title here</title>
+<title>Edit Event</title>
 </head>
 <body>
 	<div class="container">
@@ -42,9 +42,10 @@
 						<form:input class="form-control" path="location" />
 					</div>
 					<div class="form-group">
+					<form:label path="state"></form:label>
 						<select name="state">
-							<c:forEach items="${states}" var="state">
-								<option value="${state}">${state}</option>
+							<c:forEach items="${states}" var="onestate">
+								<option value="${onestate}">${onestate}</option>
 							</c:forEach>
 						</select>
 					</div>

@@ -26,6 +26,20 @@ public class HomeController {
 			return "welcome.jsp";
 		}
 		
+		//display all products
+		@GetMapping("/products")
+		public String allProducts(Model viewModel ) {
+			viewModel.addAttribute("allProducts", pService.allProducts());
+			return "products.jsp";
+		}
+		
+		//display all categories
+		@GetMapping("/categories")
+		public String allCategories(Model viewModel)
+		{
+			 viewModel.addAttribute("categories", this.cService.allCategories());
+			 return "categories.jsp";
+		}
 		//display create new product page
 		@GetMapping("/products/new")
 		public String addProduct(@ModelAttribute("product") Product product) {

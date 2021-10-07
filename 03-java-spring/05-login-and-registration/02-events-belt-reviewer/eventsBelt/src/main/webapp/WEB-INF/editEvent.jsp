@@ -19,6 +19,7 @@
 		<h1>edit an event</h1>
 		<form:form action="/events/${event.id}/edit" method="post"
 			modelAttribute="event">
+			<form:input type="hidden" value="${event.id}" path="id" />
 			<div class="form-group">
 				<form:label path="eventName">Name</form:label>
 				<form:errors class="error-txt" path="eventName" />
@@ -43,7 +44,7 @@
 				</select>
 			</div>
 			<!-- hidden input for userId , event can not live without user, so a useId is transferred-->
-			<form:input type="hidden" value="${userId}" path="eventCreator" />
+			<!--<form:input type="hidden" value="${userId}" path="eventCreator" /> -->
 			
 
 			<div class="form-group">

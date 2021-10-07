@@ -10,12 +10,12 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
 	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
 	crossorigin="anonymous">
-	<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 <title>Events</title>
 </head>
 <body>
 	<div class="container">
-	
+
 		<h1>
 			Welcome
 			<c:out value="${user.firstName}" />
@@ -24,7 +24,7 @@
 
 
 	</div>
-	<p>Here are some of the events in your state</p>
+	<p>Here are some of the events in your state <span class="state-name"><c:out value="${user.state}"/></span></p>
 	<table class="table table-striped table-dark">
 		<thead>
 			<tr>
@@ -40,14 +40,16 @@
 			<c:forEach items="${eventsInState}" var="event">
 				<tr>
 					<td>${event.id }</td>
-					<td><a href="/events/${event.id}"><c:out value="${event.eventName}" /></a></td>
+					<td><a href="/events/${event.id}"><c:out
+								value="${event.eventName}" /></a></td>
 					<td><c:out value="${event.eventDate}" /></td>
 					<td><c:out value="${event.location}" /></td>
 					<td><c:out value="${event.eventCreator.firstName}" /></td>
 					<td><c:if test="${event.eventCreator.id == user.id}">
 							<a href="/events/${event.id}/edit">Edit</a>
 							<a href="/events/${event.id}/delete">Delete</a>
-						</c:if> <c:choose>
+						</c:if> 
+						<c:choose>
 							<c:when test="${event.usersJoined.contains(user)}">
 								<a href="/events/${event.id}/cancel">Cancel</a>
 							</c:when>
@@ -57,7 +59,8 @@
 								<a href="/events/${event.id}/join">Join</a>
 
 							</c:otherwise>
-						</c:choose></td>
+						</c:choose>
+						</td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -67,7 +70,7 @@
 		<table class="table table-striped table-dark">
 			<thead>
 				<tr>
-					<th> Event ID </th>
+					<th>Event ID</th>
 					<th>Name</th>
 					<th>Date</th>
 					<th>Location</th>
@@ -79,20 +82,26 @@
 			<tbody>
 				<c:forEach items="${eventsOutState}" var="event">
 					<tr>
-						<td> ${event.id} </td>
-						<td><a href="/events/${event.id}"><c:out value="${event.eventName}" /></a></td>
+						<td>${event.id}</td>
+						<td><a href="/events/${event.id}"><c:out
+									value="${event.eventName}" /></a></td>
 						<td><c:out value="${event.eventDate}" /></td>
 						<td><c:out value="${event.location}" /></td>
 						<td><c:out value="${event.state}" /></td>
 						<td><c:out value="${event.eventCreator.firstName}" /></td>
-						<td><c:choose>
+						<td><c:if test="${event.eventCreator.id == user.id}">
+							<a href="/events/${event.id}/edit">Edit</a>
+							<a href="/events/${event.id}/delete">Delete</a>
+							</c:if> 
+						
+								<c:choose>
 								<c:when test="${event.usersJoined.contains(user)}">
-									<a href="#">Cancel</a>
+									<a href="/events/${event.id}/cancel">Cancel</a>
 								</c:when>
 
 								<c:otherwise>
 
-									<a href="#">Join</a>
+									<a href="/events/${event.id}/join">Join</a>
 
 								</c:otherwise>
 							</c:choose></td>
@@ -117,7 +126,7 @@
 			<div class="form-group">
 				<form:label path="eventDate">Date</form:label>
 				<form:errors class="error-txt" path="eventDate" />
-				<form:input type="date" class="form-control" path="eventDate" />
+				<form:input type="date" class="form-control" path="eventDate"  />
 			</div>
 			<div class="form-group">
 				<form:label path="location">Location</form:label>
@@ -133,7 +142,8 @@
 				</select>
 			</div>
 			<!-- hidden input for userId , event can not live without user, so a useId is transferred-->
-			<form:input type="hidden" value="${userId}" path="eventCreator" />
+			<!-- if no userId is sent with this form, the user_id will be null in the database -->
+			<form:input type="hidden" value="${userId}" path="eventCreator" /> 
 
 			<div class="form-group">
 				<input type="submit" value="create" class="btn btn-primary " />

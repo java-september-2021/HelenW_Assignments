@@ -1,5 +1,7 @@
 package com.events.belt.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -32,6 +34,9 @@ public class EventController {
 
 	@Autowired
 	private MessageService mService;
+	
+
+	
 
 	// get all events
 	@GetMapping("/events")
@@ -43,13 +48,12 @@ public class EventController {
 			List<Event> eventsOutState = this.eService.otherEvents(loggedInUser.getState());
 //			List<Event>  events = this.eService.allEvents();
 			System.out.println(loggedInUser.getState());
-			System.out.println(eventsInState);
-			System.out.println(eventsOutState);
+//			System.out.println(eventsInState);
+//			System.out.println(eventsOutState);
+			
 
 			viewModel.addAttribute("eventsInState", eventsInState);
-
 			viewModel.addAttribute("eventsOutState", eventsOutState);
-//			viewModel.addAttribute("events", events);
 			viewModel.addAttribute("states", State.states);
 
 			viewModel.addAttribute("user", loggedInUser);
@@ -65,9 +69,20 @@ public class EventController {
 			HttpSession session) {
 
 		if (result.hasErrors()) {
+			//by copying the same thing as above from GetMapping :/events, the content in both tables, in state drop down menu, 
+			//the loggedInUser name keep displaying, or else, they won't display
+			Long userId = (Long) session.getAttribute("userId");
+			User loggedInUser = this.uService.findUserById(userId);
+			List<Event> eventsInState = this.eService.eventsInState(loggedInUser.getState());
+			List<Event> eventsOutState = this.eService.otherEvents(loggedInUser.getState());
+			viewModel.addAttribute("eventsInState", eventsInState);
+			viewModel.addAttribute("eventsOutState", eventsOutState);
+			viewModel.addAttribute("states", State.states);
+
+			viewModel.addAttribute("user", loggedInUser);
 			return "events.jsp";
 		} else {
-			viewModel.addAttribute("states", State.states);
+
 
 			eService.createEvent(event);
 			return "redirect:/events";
@@ -81,6 +96,7 @@ public class EventController {
 			HttpSession session) {
 		viewModel.addAttribute("userId", (Long) session.getAttribute("userId"));
 		viewModel.addAttribute("event", this.eService.showEvent(id));
+		System.out.println(id);
 		viewModel.addAttribute("states", State.states);
 		return "editEvent.jsp";
 	}
@@ -91,11 +107,12 @@ public class EventController {
 			@PathVariable("eventId") Long id, Model viewModel, HttpSession session) {
 		if (result.hasErrors()) {
 			Event thisEvent = this.eService.showEvent(id);
-
+//			System.out.println(id);
 			viewModel.addAttribute("event", thisEvent);
 			viewModel.addAttribute("states", State.states);
 			return "editEvent.jsp";
 		}
+		System.out.println(event.getId());
 		this.eService.editEvent(event);
 		return "redirect:/events";
 	}
@@ -132,7 +149,7 @@ public class EventController {
 			//do i need save this event after posting a comment?
 //			eService.editEvent(thisEvent);
 
-			return "redirect:/events/" + id;
+			return "redirect:/events/" + thisEvent.getId();
 		}
 		return "redirect:/";
 	}

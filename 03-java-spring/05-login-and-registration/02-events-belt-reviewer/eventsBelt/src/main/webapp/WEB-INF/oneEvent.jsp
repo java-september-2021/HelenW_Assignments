@@ -72,7 +72,7 @@
 
 
 				</div >
-				<div class="event-form">
+				<div >
 				<form:form action="/events/${event.id}/message" method="post"
 					modelAttribute="message">
 					<div class="form-group">
@@ -81,10 +81,13 @@
 						<form:input class="form-control" path="content" />
 					</div>
 
-					<!-- hidden input for userId , a project can not live without user, so a useId is transferred-->
-					<form:input type="hidden" value="${userId}" path="messageOwner" />
+				
+					<!-- A message must be posted by some loggedIn user for a specific event -->
+					<!-- if only sending eventId, message can display without message owner -->
+					<!-- without sending event ID, the message just won't display even though userId exists -->
+					<form:input type="hidden" value="${userId}" path="messageOwner" />  
 					<form:input type="hidden" value="${event.id}" path="eventHasMessages" />
-					<input type="submit" value="submit" class="btn btn-primary" />
+					<input type="submit" value="submit" class="btn btn-primary" /> 
 				</form:form>
 				</div>
 			</div>

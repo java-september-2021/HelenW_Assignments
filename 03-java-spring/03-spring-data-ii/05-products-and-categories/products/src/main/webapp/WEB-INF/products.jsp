@@ -9,15 +9,21 @@
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
-<title>New Product</title>
+<title>All products</title>
 </head>
 <body>
 <div class="container">
-<h1>Welcome to Products and Categories</h1>
-<a href="/products/new" class="btn btn-primary">create a new product</a>
-<a href="/categories/new" class="btn btn-primary">create a new category</a>
-<a href="/products">all products</a>
-<a href="/categories">all categories</a>
+<h1>All products</h1>
+<a href="/" class="btn btn-primary">dashboard</a>
+<a href="/categories">categories</a>
+
+
+        <c:forEach items="${allProducts}" var="product">
+   
+            <li>Product Name: <c:out value="${product.name}"/></li>
+       
+    
+        </c:forEach>
 
 </div>
 </body>

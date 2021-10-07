@@ -17,7 +17,10 @@ public class ProductService {
 	@Autowired
 	private CategoryRepository cRepo;
 	
-	
+	//find all products
+	public List<Product> allProducts() {
+		return this.pRepo.findAll();
+	}
 	
 	 // Retrieves a list of any categories a particular product
     // does not belong to.

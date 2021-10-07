@@ -13,17 +13,17 @@ import com.events.belt.repositories.UserRepository;
 
 
 @Component
-public class UserValidator implements Validator{
+public class UserValidator {
 	@Autowired
+	//do not need implements interface Validator here because there is a validation dependency already.
 	private UserRepository userRepository;
-	 // 1
-    @Override
+
+
     public boolean supports(Class<?> clazz) {
         return User.class.equals(clazz);
     }
     
-    // 2
-    @Override
+
     public void validate(Object target, Errors errors) {
         //need type cast here
         User user = (User) target;
@@ -36,6 +36,11 @@ public class UserValidator implements Validator{
         
         if (userRepository.findByEmail(user.getEmail())!= null) {
         	errors.rejectValue("email", "Unique","Email already exists!!");
+        }
+        
+        //the user with certain name is not allowed to register, for example
+        if(user.getFirstName().equals("Matt")) {
+        	errors.rejectValue("firstName", "NoMattsAllowed", "Matts are not able to register at this time");
         }
     }	
 

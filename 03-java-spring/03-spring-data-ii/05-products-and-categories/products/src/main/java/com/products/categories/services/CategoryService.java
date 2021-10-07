@@ -14,10 +14,10 @@ public class CategoryService {
 	@Autowired
 	private CategoryRepository cRepo;
 	
-	//find all products;
-//	public List<Category> allCategories() {
-//		return this.cRepo.findAll();
-//	}
+	//find all categories;
+	public List<Category> allCategories() {
+		return this.cRepo.findAll();
+	}
 	
 	 // Retrieves a list of any categories a particular product
     // does not belong to.

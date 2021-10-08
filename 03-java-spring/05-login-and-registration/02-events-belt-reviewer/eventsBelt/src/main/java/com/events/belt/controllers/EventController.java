@@ -80,10 +80,12 @@ public class EventController {
 			viewModel.addAttribute("states", State.states);
 
 			viewModel.addAttribute("user", loggedInUser);
+			
 			return "events.jsp";
 		} else {
-
-
+			Long userId = (Long) session.getAttribute("userId");
+			User loggedInUser = this.uService.findUserById(userId);
+			event.setEventCreator(loggedInUser);
 			eService.createEvent(event);
 			return "redirect:/events";
 		}
@@ -95,8 +97,11 @@ public class EventController {
 	public String editRecord(@ModelAttribute("event") Event event, @PathVariable("eventId") Long id,  Model viewModel,
 			HttpSession session) {
 		viewModel.addAttribute("userId", (Long) session.getAttribute("userId"));
+		//problem
 		viewModel.addAttribute("event", this.eService.showEvent(id));
+		System.out.println("getting event ID");
 		System.out.println(id);
+		
 		viewModel.addAttribute("states", State.states);
 		return "editEvent.jsp";
 	}
@@ -108,10 +113,12 @@ public class EventController {
 		if (result.hasErrors()) {
 			Event thisEvent = this.eService.showEvent(id);
 //			System.out.println(id);
-			viewModel.addAttribute("event", thisEvent);
+//			viewModel.addAttribute("event", thisEvent);
 			viewModel.addAttribute("states", State.states);
 			return "editEvent.jsp";
 		}
+		System.out.println("event ID for postMapping");
+		event.setEventCreator(uService.findUserById((Long) session.getAttribute("userId")));
 		System.out.println(event.getId());
 		this.eService.editEvent(event);
 		return "redirect:/events";
@@ -144,10 +151,15 @@ public class EventController {
 		if (session.getAttribute("userId") != null) {
 			viewModel.addAttribute("userId", (Long) session.getAttribute("userId"));
 			Event thisEvent = eService.showEvent(id);
-
+			User loggedUser = uService.findUserById((Long) session.getAttribute("userId"));
+			
+			//one message is posted by a logged in user for a specific event.
+			message.setEventHasMessages(thisEvent);
+			message.setMessageOwner(loggedUser);
 			mService.createMessage(message);
-			//do i need save this event after posting a comment?
-//			eService.editEvent(thisEvent);
+			
+			
+
 
 			return "redirect:/events/" + thisEvent.getId();
 		}

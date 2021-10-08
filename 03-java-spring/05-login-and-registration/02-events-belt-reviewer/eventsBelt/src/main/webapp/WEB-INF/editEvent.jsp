@@ -2,6 +2,8 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page isErrorPage="true" %> 
+
 
 <!DOCTYPE html>
 <html>
@@ -16,14 +18,15 @@
 </head>
 <body>
 	<div class="container">
+			<a href="/events">dashboard</a>
 		<h1>edit an event</h1>
 		<form:form action="/events/${event.id}/edit" method="post"
-			modelAttribute="event">
+			modelAttribute="event"><c:out value="${event.id }"/>
 			<form:input type="hidden" value="${event.id}" path="id" />
 			<div class="form-group">
 				<form:label path="eventName">Name</form:label>
 				<form:errors class="error-txt" path="eventName" />
-				<form:input class="form-control" path="eventName" />
+				<form:input class="form-control" path="eventName"  />
 			</div>
 			<div class="form-group">
 				<form:label path="eventDate">Date</form:label>

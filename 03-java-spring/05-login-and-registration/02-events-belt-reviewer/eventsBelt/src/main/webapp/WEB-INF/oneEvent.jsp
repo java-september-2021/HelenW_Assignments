@@ -18,6 +18,7 @@
 	<div class="container">
 		<a href="/events">dashboard</a>
 		<h1>
+	
 			<c:out value="${event.eventName}" />
 		</h1>
 		<div class="row">
@@ -85,8 +86,8 @@
 					<!-- A message must be posted by some loggedIn user for a specific event -->
 					<!-- if only sending eventId, message can display without message owner -->
 					<!-- without sending event ID, the message just won't display even though userId exists -->
-					<form:input type="hidden" value="${userId}" path="messageOwner" />  
-					<form:input type="hidden" value="${event.id}" path="eventHasMessages" />
+					<!--<form:input type="hidden" value="${userId}" path="messageOwner" />  -->
+				<!--<form:input type="hidden" value="${event.id}" path="eventHasMessages" /> -->
 					<input type="submit" value="submit" class="btn btn-primary" /> 
 				</form:form>
 				</div>

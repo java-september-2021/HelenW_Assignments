@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,11 +21,15 @@
 			Welcome
 			<c:out value="${user.firstName}" />
 		</h1>
+
 		<a href="/logout">logout</a>
 
 
 	</div>
-	<p>Here are some of the events in your state <span class="state-name"><c:out value="${user.state}"/></span></p>
+	<p>
+		Here are some of the events in your state <span class="state-name"><c:out
+				value="${user.state}" /></span>
+	</p>
 	<table class="table table-striped table-dark">
 		<thead>
 			<tr>
@@ -42,14 +47,14 @@
 					<td>${event.id }</td>
 					<td><a href="/events/${event.id}"><c:out
 								value="${event.eventName}" /></a></td>
-					<td><c:out value="${event.eventDate}" /></td>
+					<!-- use the prefix fmt:formatDate to display "November 22,2021" date style -->
+					<td><fmt:formatDate type = "date" value = "${event.eventDate}" /></td>
 					<td><c:out value="${event.location}" /></td>
 					<td><c:out value="${event.eventCreator.firstName}" /></td>
 					<td><c:if test="${event.eventCreator.id == user.id}">
 							<a href="/events/${event.id}/edit">Edit</a>
 							<a href="/events/${event.id}/delete">Delete</a>
-						</c:if> 
-						<c:choose>
+						</c:if> <c:choose>
 							<c:when test="${event.usersJoined.contains(user)}">
 								<a href="/events/${event.id}/cancel">Cancel</a>
 							</c:when>
@@ -59,8 +64,7 @@
 								<a href="/events/${event.id}/join">Join</a>
 
 							</c:otherwise>
-						</c:choose>
-						</td>
+						</c:choose></td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -89,12 +93,12 @@
 						<td><c:out value="${event.location}" /></td>
 						<td><c:out value="${event.state}" /></td>
 						<td><c:out value="${event.eventCreator.firstName}" /></td>
+
+						<!-- Helen's way-->
 						<td><c:if test="${event.eventCreator.id == user.id}">
-							<a href="/events/${event.id}/edit">Edit</a>
-							<a href="/events/${event.id}/delete">Delete</a>
-							</c:if> 
-						
-								<c:choose>
+								<a href="/events/${event.id}/edit">Edit</a>
+								<a href="/events/${event.id}/delete">Delete</a>
+							</c:if> <c:choose>
 								<c:when test="${event.usersJoined.contains(user)}">
 									<a href="/events/${event.id}/cancel">Cancel</a>
 								</c:when>
@@ -105,6 +109,28 @@
 
 								</c:otherwise>
 							</c:choose></td>
+
+
+						<!-- platform's way -->
+						<!--
+							<c:choose>
+								<c:when test="${ event.eventCreator.id == user.id }">
+									<a href="/events/${ event.id }/edit">Edit</a> |
+									<a href="/events/${event.id}/delete">Delete</a>
+								</c:when>
+								<c:otherwise>
+									<c:choose>
+										<c:when test="${ event.usersJoined.contains(user) }">
+											<span>Joining <a href="/events/${ event.id }/cancel">Cancel</a></span>
+										</c:when>
+										<c:otherwise>
+											<a href="/events/${ event.id }/join">Join</a>								
+										</c:otherwise>
+									
+									</c:choose>
+								</c:otherwise>
+							</c:choose>
+							-->
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -126,7 +152,7 @@
 			<div class="form-group">
 				<form:label path="eventDate">Date</form:label>
 				<form:errors class="error-txt" path="eventDate" />
-				<form:input type="date" class="form-control" path="eventDate"  />
+				<form:input type="date" class="form-control" path="eventDate" />
 			</div>
 			<div class="form-group">
 				<form:label path="location">Location</form:label>
@@ -143,7 +169,7 @@
 			</div>
 			<!-- hidden input for userId , event can not live without user, so a useId is transferred-->
 			<!-- if no userId is sent with this form, the user_id will be null in the database -->
-			<form:input type="hidden" value="${userId}" path="eventCreator" /> 
+			<!--<form:input type="hidden" value="${userId}" path="eventCreator" />-->
 
 			<div class="form-group">
 				<input type="submit" value="create" class="btn btn-primary " />

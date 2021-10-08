@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -44,8 +45,10 @@ public class Event {
 	    private Date createdAt;
 	    private Date updatedAt;
 	    
-	    //one event may have many messages
-	    @OneToMany(mappedBy="eventHasMessages", fetch = FetchType.LAZY)
+	    //one event may have many messages, CascadeType.REMOVE is added here suggested by Reena for an event that has messages,
+	    //without this "CascadeType.remove", an event that has undeleted messages can not get deleted by Delete operation in dashboard page.
+	    //or can use "CascadeType.ALL" which Matt has used in his lecture code "Album" too. All includes remove.
+	    @OneToMany(mappedBy="eventHasMessages", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	    private List<Message> messagesForEvent;
 	    
 	    //one user can create many events

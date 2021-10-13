@@ -20,6 +20,7 @@
 <h1><c:out value="${onecategory.name}" /> </h1> 
 
  <h3></h3>
+ 
  <ul>
         <c:forEach items="${productsInCate}" var="product">
    

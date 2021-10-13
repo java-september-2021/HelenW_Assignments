@@ -34,7 +34,7 @@ public class UserValidator {
         }  
         
         
-        if (userRepository.findByEmail(user.getEmail())!= null) {
+        if (userRepository.existsByEmail(user.getEmail())) {
         	errors.rejectValue("email", "Unique","Email already exists!!");
         }
         

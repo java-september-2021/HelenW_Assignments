@@ -42,7 +42,7 @@ public class Question {
 	    @OneToMany(mappedBy="answerOwner", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	    private List<Answer> answersForQuestion;
 	    
-	    //same quesion can have many tags
+	    //same question can have many tags
 	    @ManyToMany(fetch = FetchType.LAZY)
 	    @JoinTable(
 	    		name = "quesion_tags",

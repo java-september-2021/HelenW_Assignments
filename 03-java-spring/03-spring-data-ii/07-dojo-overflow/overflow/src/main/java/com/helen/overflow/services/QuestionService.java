@@ -19,14 +19,20 @@ public class QuestionService {
 		return qRepo.findAll();
 	}
 	
+	//one question
+	public Question getOneQ(Long id) {
+		return qRepo.findById(id).orElse(null);
+	}
+	
 	//create a question
 	public Question createQ(Question question) {
 		return this.qRepo.save(question);
 	}
 	
 	//add tag to question
-	public void tagToQuestion(Question question, String tag) {
+	public void tagToQuestion(Question question, Tag tag) {
 		List<Tag> currentTags = question.getTagsForQuestion();
+		
 		currentTags.add(tag);
 		this.qRepo.save(question);
 	}

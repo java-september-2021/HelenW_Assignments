@@ -27,4 +27,14 @@ public class TagService {
 	public boolean tagPresent(String tag) {
 		return tRepo.existsBySubject(tag);
 	}
+	
+	public Tag findBySubject(String subject) {
+		Tag tagToAdd = this.tRepo.findBySubject(subject).orElse(null);
+		if(tagToAdd == null) {
+			tagToAdd = new Tag(subject);
+			return this.tRepo.save(tagToAdd);
+		}
+		return tagToAdd;
+	}
+
 }

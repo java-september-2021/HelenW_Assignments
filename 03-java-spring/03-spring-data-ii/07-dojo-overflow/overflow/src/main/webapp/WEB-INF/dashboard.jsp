@@ -22,7 +22,7 @@
 		<thead>
 			<tr>
 				<th>ID</th>
-				<th>Questoin</th>
+				<th>question</th>
 				<th>tags</th>
 		
 			</tr>
@@ -30,9 +30,9 @@
 		<tbody>
 			<c:forEach items="${questions}" var="question">
 				<tr>
-					<td>${quesion.id }</td>
+					<td>${question.id }</td>
 			
-					<td><c:out value="${question.question}" /></td>
+					<td><a href="/questions/${question.id}" ><c:out value="${question.questionContent}" /></a></td>
 					<td>
 						<c:forEach items ="${question.tagsForQuestion}"  var="tag">
 						<span><c:out value="${tag.subject}" /></span>

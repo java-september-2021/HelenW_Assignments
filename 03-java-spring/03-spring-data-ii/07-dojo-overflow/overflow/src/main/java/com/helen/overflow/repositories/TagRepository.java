@@ -13,4 +13,5 @@ public interface TagRepository extends CrudRepository<Tag, Long> {
 	List<Tag> findAll();
     boolean existsBySubject(String subject);
 	Optional<Tag> findBySubject(String subject);
+	 
 }

@@ -24,6 +24,7 @@
 				<th>ID</th>
 				<th>question</th>
 				<th>tags</th>
+				<th>tags ID</th>
 		
 			</tr>
 		</thead>
@@ -35,7 +36,12 @@
 					<td><a href="/questions/${question.id}" ><c:out value="${question.questionContent}" /></a></td>
 					<td>
 						<c:forEach items ="${question.tagsForQuestion}"  var="tag">
-						<span><c:out value="${tag.subject}" /></span>
+						<span><c:out value="${tag.subject}" />,</span>
+						</c:forEach>
+					</td>
+					<td>
+					<c:forEach items ="${question.tagsForQuestion}"  var="tag">
+						<span><c:out value="${tag.id}" />,</span>
 						</c:forEach>
 					</td>
 					
@@ -43,7 +49,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<a href="/questions/new">new question</a>
+	<a href="/questions/new" class="btn btn-primary">new question</a>
 </div>
 </body>
 </html>

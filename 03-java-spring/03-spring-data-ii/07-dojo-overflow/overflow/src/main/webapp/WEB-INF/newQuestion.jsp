@@ -12,11 +12,11 @@
 	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="/css/style.css">
-<title>dashboard page</title>
+<title>New Question</title>
 </head>
 <body>
 <div class="container">
-
+<a href="/questions">dashboard</a>
 
 <h1>What is your question?</h1>
 		<form:form action="/questions/create" method="post"

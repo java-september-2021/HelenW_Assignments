@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.helen.overflow.models.Answer;
 import com.helen.overflow.models.Question;
 import com.helen.overflow.models.Tag;
+import com.helen.overflow.services.AnswerService;
 import com.helen.overflow.services.QuestionService;
 import com.helen.overflow.services.TagService;
 import com.helen.overflow.validators.QuestionValidator;
@@ -32,6 +33,14 @@ public class QuestionController {
 	
 	@Autowired
 	private QuestionValidator qValidator;
+	
+	@Autowired
+	private AnswerService aService;
+	
+	@GetMapping("/")
+	public String welcome() {
+		return "welcome.jsp";
+	}
 	
 	
 	@GetMapping("/questions") 
@@ -61,9 +70,11 @@ public class QuestionController {
 		System.out.println(newQ);
 		String[] taglist = question.getTempTags().split(", ");
 		System.out.println(taglist.length);
-		for(int i=0; i < taglist.length; i++) {
+//		for(int i=0; i < taglist.length; i++)
+		for (String tag: taglist)  //enhanced loop style for(element container : collection)
+		{
 			//return a newly created tag or an old tag
-			Tag newTag = this.tService.findBySubject(taglist[i]);
+			Tag newTag = this.tService.findBySubject(tag);
 			System.out.println("tag has been generated");
 				
 			this.qService.tagToQuestion(newQ, newTag);
@@ -78,5 +89,19 @@ public class QuestionController {
 		Question thisQuestion = qService.getOneQ(id);
 		viewModel.addAttribute("question", thisQuestion);
 		return "details.jsp";
+	}
+	
+	
+	//create answer
+	@PostMapping("/questions/{id}/answers/create")
+	public String addAnswer(@Valid @ModelAttribute("answer") Answer answer, BindingResult result, @PathVariable("id") Long id, Model viewModel) {
+		if(result.hasErrors()) {
+			Question thisQuestion = qService.getOneQ(id);
+			viewModel.addAttribute("question", thisQuestion);
+			return "details.jsp";
+		}
+		answer.setAnswerOwner(this.qService.getOneQ(id));
+		aService.createR(answer);
+		return "redirect:/questions/"+id;
 	}
 }

@@ -30,7 +30,16 @@ public class QuestionValidator {
 				errors.rejectValue("tempTags", "threeTags", "Only 3 tags are allowed per question.");
 			}
 			
-			
+			for (String tag: tags) {
+				char[] tagChArr = tag.toCharArray();
+				for (char tagCh: tagChArr) {
+					//isUpperCase applied on array of character
+					if (Character.isUpperCase(tagCh)) {
+						errors.rejectValue("tempTags", "mustLowerCase", "Tags must be lowercased.");
+					}
+				}
+				
+			}
 		}
 	 
 	    

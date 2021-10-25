@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mashape.unirest.http.HttpResponse;
@@ -39,12 +40,12 @@ public class HomeController {
 		 System.out.print(resultsObject);
 		 
 		 //"Search" has to match the one in the response object
-		 JSONArray searchResults = resultsObject.getJSONArray("Search");
+		 JSONArray searchResults = resultsObject.getJSONArray("Search");//Search is the key word from JSON response
 		 ArrayList<JSONObject> resultsForPage = new ArrayList<JSONObject>();
 		 for(int i = 0; i < searchResults.length(); i++) {
 			 resultsForPage.add(searchResults.getJSONObject(i));
 		 }
-		 viewModel.addAttribute("total",resultsObject.get("totalResults"));
+		 viewModel.addAttribute("total",resultsObject.get("totalResults"));//totalResults is the key word from JSON response
 		 viewModel.addAttribute("results",resultsForPage);
 		 viewModel.addAttribute("search", search);
 		 
@@ -53,5 +54,29 @@ public class HomeController {
 			e.printStackTrace();
 		}
 		return "results.jsp";
+	}
+	
+	
+	@GetMapping("/details/{id}")
+	public String details(@PathVariable("id") String id, Model viewModel) {
+		try {
+			HttpResponse<JsonNode> request = Unirest.get(url + "i={id}" )
+					.routeParam("id", id)
+					
+					.asJson();
+			
+			JSONObject resultsObject = request.getBody().getObject();
+			JSONArray ratings = resultsObject.getJSONArray("Ratings");
+			ArrayList<JSONObject>  ratingsList = new ArrayList<JSONObject>();
+			for(int i = 0; i < ratings.length(); i++) {
+				ratingsList.add(ratings.getJSONObject(i));
+			}
+			viewModel.addAttribute("movie", resultsObject);
+			viewModel.addAttribute("ratings", ratingsList);
+		}  catch(UnirestException e ) {
+			//TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "show.jsp";
 	}
 }	

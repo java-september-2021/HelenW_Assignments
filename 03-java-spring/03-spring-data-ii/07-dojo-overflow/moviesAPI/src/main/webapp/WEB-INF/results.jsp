@@ -13,10 +13,15 @@
 <p>total: ${total} </p>
 <hr>
 <c:forEach items="${results}" var="movie">
+<p><a href="/details/${movie.getString('imdbID')}">Name:${movie.getString("Title")} </a>
+
+</p>
 <p>
-Name:${movie.getString("Title")}    ||
 Year: ${movie.getString("Year") }
+</p>
+<p>
 Poster:<img src="${movie.getString('Poster')}">
+
 </p>
 <hr>
 </c:forEach>

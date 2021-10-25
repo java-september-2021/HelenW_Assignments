@@ -4,9 +4,25 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Movie Details</title>
 </head>
 <body>
-
+<h1>Movie details for ${movie.getString("Title")} </h1>
+<hr>
+<p>
+Title: ${movie.getString("Title") }
+</p>
+<p>
+Director: ${movie.getString("Director") }
+</p>
+<p>
+Year: ${movie.getString("Year") }
+</p>
+<p>
+Rated: ${movie.getString("Rated")}
+</p>
+<p>
+Plot:${movie.getString("Plot")}
+</p>
 </body>
 </html>

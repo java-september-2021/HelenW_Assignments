@@ -61,7 +61,7 @@ public class HomeController {
 	public String details(@PathVariable("id") String id, Model viewModel) {
 		try {
 //			HttpResponse<JsonNode> request = Unirest.get(url + "i={id}" ) //return default short plot
-			HttpResponse<JsonNode> request = Unirest.get(url + "i={id}&plot=full" ) //return a full plot
+			HttpResponse<JsonNode> request = Unirest.get(url + "i={id}&plot=full" ) //return a full plot.  Oct.25, 2021 from instructor Matt
 					.routeParam("id", id)
 					
 					.asJson();

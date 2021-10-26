@@ -60,7 +60,8 @@ public class HomeController {
 	@GetMapping("/details/{id}")
 	public String details(@PathVariable("id") String id, Model viewModel) {
 		try {
-			HttpResponse<JsonNode> request = Unirest.get(url + "i={id}" )
+//			HttpResponse<JsonNode> request = Unirest.get(url + "i={id}" ) //return default short plot
+			HttpResponse<JsonNode> request = Unirest.get(url + "i={id}&plot=full" ) //return a full plot
 					.routeParam("id", id)
 					
 					.asJson();

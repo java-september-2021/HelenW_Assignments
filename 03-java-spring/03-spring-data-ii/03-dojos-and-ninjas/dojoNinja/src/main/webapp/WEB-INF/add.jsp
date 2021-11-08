@@ -11,12 +11,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="/">dashboard</a>
+<a href="/">Home</a>
 <h1 class="title">New Dojo</h1>
+<p class="txt-error"><c:out value="${errors}" /><p>
 <form:form action="/dojos/create" method="post" modelAttribute="dojo" class="form" >
     <div class="form-group">
         <form:label path="name">Name</form:label>
-        <form:errors class="error-txt" path="name"/>
+        <form:errors class="txt-error" path="name"/>
         <form:input class="form-control" path="name"/>
     </div>
    

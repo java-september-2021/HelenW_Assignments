@@ -10,7 +10,7 @@
 <div class="container">
 <h1 class="title">Welcome to Dojos and Ninjas</h1>
 <h3 class="title"><a href="/dojos/new"> new dojo</a>
-<a href="/ninjas/new">new ninja</a></h3>
+<a href="/ninjas/new">new ninja</a><a href="/dojos">All Dojos</a></h3>
 </div>
 </body>
 </html>

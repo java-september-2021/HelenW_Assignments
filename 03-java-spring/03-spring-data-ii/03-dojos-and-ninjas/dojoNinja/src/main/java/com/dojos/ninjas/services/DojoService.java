@@ -37,5 +37,9 @@ public class DojoService {
 			this.dRepo.deleteById(id);
 			return "Dojo has been deleted";
 		}
+		
+		public Boolean existsName(String string) {
+			return this.dRepo.existsByName(string);
+		}
 	
 }

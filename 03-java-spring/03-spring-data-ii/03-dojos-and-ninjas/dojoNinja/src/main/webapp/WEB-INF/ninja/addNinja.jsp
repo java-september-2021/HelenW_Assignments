@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<a href="/">dashboard</a>
+<a href="/">Home</a>
 <h1 class="title">New Ninja</h1>
 <form:form action="/ninjas/newninja" method="post" modelAttribute="ninja" class="form"  >
 	<form:label path="dojoNinja">Dojo</form:label>

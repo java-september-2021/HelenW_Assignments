@@ -12,6 +12,25 @@
 <body>
 <div class="container">
 <h1>All dojos</h1>
+<a href="/">home</a>
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+    
+            <th>Dojo Name</th>
+      
+    </thead>
+    <tbody>
+        <c:forEach items="${dojos}" var="dojo">
+        <tr>
+          
+            <td><c:out value="${dojo.name}"/></td>
+ 
+            
+        </tr>
+        </c:forEach>
+    </tbody>
+</table>
 </div>
 </body>
 </html>

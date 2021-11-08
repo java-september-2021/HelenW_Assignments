@@ -12,14 +12,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dojos.ninjas.models.Dojo;
 import com.dojos.ninjas.services.DojoService;
+import com.dojos.ninjas.validators.DojoValidator;
 
 @Controller
 public class DojoHomeController {
 	@Autowired
 	private DojoService dService;
+	
+	@Autowired
+	private DojoValidator dojoValidator;
 	
 	//index page
 	@GetMapping("") 
@@ -41,10 +46,16 @@ public class DojoHomeController {
 		}
 		
 		@PostMapping("/dojos/create")
-		public String addRecord(@Valid @ModelAttribute("dojo") Dojo dojo, BindingResult result) {
+		public String addRecord(@Valid @ModelAttribute("dojo") Dojo dojo, BindingResult result, RedirectAttributes redirectAttributes) {
+			dojoValidator.validate(dojo, result);
 			if(result.hasErrors()) {
 				return "add.jsp";
 			}
+			//the following error check works if you don't want to use the DojoValidator
+//			if(dService.existsName(dojo.getName())) {
+//				  redirectAttributes.addFlashAttribute("errors", "This dojo name exists, please change another one");
+//			       return "redirect:/dojos/new";
+//			}
 			this.dService.createDojo(dojo);
 			return "redirect:/dojos";
 		}

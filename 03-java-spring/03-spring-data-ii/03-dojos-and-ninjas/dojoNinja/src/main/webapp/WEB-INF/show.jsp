@@ -12,6 +12,8 @@
 </head>
 <body>
 <h1><c:out value="${ninja.dojoNinja.name}"/> Location Ninjas</h1>
+<a href="/">Home</a> <a href="/dojos">All dojos</a>
+
 
 <table class="table table-striped table-dark">
     <thead>

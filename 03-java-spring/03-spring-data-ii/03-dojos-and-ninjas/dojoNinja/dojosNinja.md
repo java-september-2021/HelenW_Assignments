@@ -13,3 +13,8 @@ Tasks:
 
 ● Have a dojo show page show information of all the ninjas that belong to that specific location.
 
+
+2021-11-7
+1. add a custome query "	boolean existsByName(String name); " in DojoRepository, so that each dojo name is unique and no duplicate exists.
+2. Also update the index.jsp so that all dojos will display in a table.
+

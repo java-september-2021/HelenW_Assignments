@@ -23,7 +23,7 @@ public class DojoValidator {
         Dojo dojo = (Dojo) target;
         
        if(dRepo.existsByName(dojo.getName())) {
-    	   errors.rejectValue("name", "UniqueDojoName", "Dojo Name must be unique, please choose another one");
+    	   errors.rejectValue("name", "UniqueDojoName", dojo.getName()+" exists, please choose another one");
        }
         
         
